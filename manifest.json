@@ -1,11 +1,10 @@
 {
-	"id": "publish-to-confluence",
-	"name": "Publish to Confluence",
-	"version": "1.0.0",
-	"minAppVersion": "0.15.0",
-	"description": "Publish markdown notes to Confluence.",
-	"author": "Ray",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
-	"isDesktopOnly": false
+  "id": "publish-to-confluence",
+  "name": "Publish to Confluence",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "Publish markdown notes to Confluence.",
+  "author": "Ray",
+  "authorUrl": "https://github.com/UltraREX/publish2confluence",
+  "isDesktopOnly": false
 }
