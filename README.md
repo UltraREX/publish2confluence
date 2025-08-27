@@ -1,4 +1,4 @@
-# Obsidian Confluence Publisher (Cookie-based)
+# Publish to Confluence (Cookie-based)
 
 A simple Obsidian plugin that allows you to **publish your notes from Obsidian directly to Atlassian Confluence**.  
 Instead of OAuth or API tokens, this plugin uses your **authenticated browser cookies** to connect with Confluence.  
