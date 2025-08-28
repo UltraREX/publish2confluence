@@ -33,7 +33,7 @@ export default class Publish2Confluence extends Plugin {
 		// This adds an editor command that can perform some operation on the current editor instance
 		this.addCommand({
 			id: 'publish-to-confluence',
-			name: 'Publish to Confluence',
+			name: 'Publish Current Note to Confluence',
 			editorCallback: async (editor: Editor, view: MarkdownView) => {
                 const activeFile = this.app.workspace.getActiveFile();
                 if (!activeFile) return;
@@ -130,7 +130,7 @@ export default class Publish2Confluence extends Plugin {
 
 		const version = await this.getPageVersion(spaceKey, fileName);
 		if (version > 0) {
-			var pageId = await this.getPageId(spaceKey, fileName, false);
+			const pageId = await this.getPageId(spaceKey, fileName, false);
 			return this.updateMarkdownPage(
 				spaceKey,
 				parentPageId,
