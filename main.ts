@@ -109,7 +109,7 @@ export default class Publish2Confluence extends Plugin {
 		let parentPageId: number = rootPageId;
 		for (const folderName of folders) {
 			let pageId = await this.getPageId(spaceKey, folderName);
-			console.log(`Folder: ${folderName}, PageId: ${pageId}`);
+			log(`Folder: ${folderName}, PageId: ${pageId}`);
 			if (!pageId || pageId <= 0) {
 				result = await this.createParentPage(
 					spaceKey,
@@ -403,13 +403,13 @@ export default class Publish2Confluence extends Plugin {
 				'Accept': 'application/json'
 			} as any,
 		};
-		console.log(`>>> GET Request: ${url}`);
-    	console.log(JSON.stringify(options, null, 2));
+		log(`>>> GET Request: ${url}`);
+    	log(JSON.stringify(options, null, 2));
 
 		const res = await requestUrl(options);
 
-		console.log("<<< GET Response:");
-		console.log(res);
+		log("<<< GET Response:");
+		log(res);
 
 		if (res.status == 200) {
 			return res;
@@ -440,13 +440,13 @@ export default class Publish2Confluence extends Plugin {
 			body: body,
 			throw: false
 		};
-		console.log(`>>> POST Request: ${url}`);
-		console.log(JSON.stringify(options, null, 2));
+		log(`>>> POST Request: ${url}`);
+		log(JSON.stringify(options, null, 2));
 
 		const res = await requestUrl(options);
 
-		console.log("<<< POST Response:");
-		console.log(res);
+		log("<<< POST Response:");
+		log(res);
 
 		if (res.status == 200) {
 			return res;
@@ -477,13 +477,13 @@ export default class Publish2Confluence extends Plugin {
 			body: body,
 			throw: false
 		};
-		console.log(`>>> PUT Request: ${url}`);
-		console.log(JSON.stringify(options, null, 2));
+		log(`>>> PUT Request: ${url}`);
+		log(JSON.stringify(options, null, 2));
 
 		const res = await requestUrl(options);
 
-		console.log("<<< PUT Response:");
-		console.log(res);
+		log("<<< PUT Response:");
+		log(res);
 
 		if (res.status == 200) {
 			return res;
@@ -575,5 +575,12 @@ class Publish2ConfluenceSettingTab extends PluginSettingTab {
 				await this.plugin.saveSettings();
 			})
 	  );
+	}
+}
+
+const isDev = process.env.NODE_ENV === "development";
+export function log(...args: any[]) {
+	if (isDev) {
+		console.log(...args);
 	}
 }
