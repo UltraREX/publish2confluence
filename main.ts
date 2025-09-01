@@ -304,8 +304,12 @@ export default class Publish2Confluence extends Plugin {
 		title: string
 	): Promise<any> => {
 		// http://192.168.31.103:8090/rest/api/content?spaceKey=~ray&title=知识库&expand=space,body.view,version,container
-		const url = `${this.settings.confluenceHost}/rest/api/content?spaceKey=${spaceKey}&title=${encodeURIComponent(title)}&expand=space,body.view,version,container`;
-		const res = await this.getHttp(url);
+		const base = new URL(this.settings.confluenceHost);
+		const url = new URL(
+			`/rest/api/content?spaceKey=${spaceKey}&title=${encodeURIComponent(title)}&expand=space,body.view,version,container`,
+			base
+		);
+		const res = await this.getHttp(url.toString());
 
 		if (res.status === 200) {
 			const data = JSON.parse(res.text);
@@ -346,9 +350,9 @@ export default class Publish2Confluence extends Plugin {
 		};
 		const jsonBody = JSON.stringify(body);
 
-		const hostUrl = this.settings.confluenceHost;
-		const url = `${hostUrl}/rest/api/content`;
-		const res = await this.postHttp(url, jsonBody);
+		const base = new URL(this.settings.confluenceHost);
+		const url = new URL(`/rest/api/content`, base);
+		const res = await this.postHttp(url.toString(), jsonBody);
 		return res.status === 200;
 	};
 
@@ -386,9 +390,9 @@ export default class Publish2Confluence extends Plugin {
 		};
 		const jsonBody = JSON.stringify(body);
 
-		const hostUrl = this.settings.confluenceHost;
-		const url = `${hostUrl}/rest/api/content/${pageId}`;
-		const res = await this.putHttp(url, jsonBody);
+		const base = new URL(this.settings.confluenceHost);
+		const url = new URL(`/rest/api/content/${pageId}`, base);
+		const res = await this.putHttp(url.toString(), jsonBody);
 		return res.status === 200;
 	};
 
